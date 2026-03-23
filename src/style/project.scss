@@ -1,0 +1,329 @@
+    .project {
+        width: 100%;
+        margin: 0px auto;
+        color: #fff;
+    }
+
+    /* 탭 버튼 */
+    .project_tabs {
+        display: flex;
+        justify-content: flex-end;
+        gap: 20px;
+        margin-bottom: 50px;
+
+        li {
+            padding: 10px 30px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(8px);
+        }
+
+        li.active {
+            background: #fff;
+            color: #000;
+        }
+    }
+
+    /* 탭 콘텐츠 */
+    .project_contents {
+        animation: fadeIn 0.5s ease;
+    }
+
+    /* 리스트 */
+    .project_grid {
+        display: flex;
+        justify-content: flex-end;
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+
+    /* 카드 */
+    .project_card {
+        position: relative;
+        width: 300px;
+        min-height: 420px;
+        overflow: hidden;
+        border-radius: 16px;
+        padding: 18px;
+        cursor: pointer;
+
+        background: rgba(20, 20, 40, 0.55);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+
+        transition: transform 0.35s ease, box-shadow 0.35s ease;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -120%;
+            width: 80%;
+            height: 200%;
+            background: linear-gradient(120deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.18),
+                    transparent);
+            transform: rotate(25deg);
+            transition: left 0.8s ease;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        &:hover::before {
+            left: 140%;
+        }
+
+        &:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.45);
+        }
+    }
+
+    /* 썸네일 */
+    .thumb {
+        width: 100%;
+        height: 230px;
+        border-radius: 12px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.06);
+        margin-bottom: 16px;
+
+        img,
+        .thumb_video {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        img {
+            object-fit: contain;
+            transition: transform 0.45s ease;
+        }
+
+        .thumb_video {
+            object-fit: cover;
+            transition: transform 0.45s ease;
+        }
+    }
+
+    .project_card:hover .thumb img,
+    .project_card:hover .thumb .thumb_video {
+        transform: scale(1.05);
+    }
+
+    /* 텍스트 */
+    .info {
+        display: grid;
+        gap: 8px;
+    }
+
+    .title {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.25;
+    }
+
+    .desc {
+        font-size: 13px;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.72);
+        min-height: 40px;
+    }
+
+    .meta {
+        position: absolute;
+        bottom: 20px;
+    }
+
+    .role,
+    .deploy,
+    .period,
+    .contribution {
+        font-size: 12px;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.78);
+    }
+
+    .meta {
+        margin-top: 6px;
+        font-size: 13px;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* =========================
+    모달
+    ========================= */
+    .project_modal {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 24px;
+        background: rgba(5, 8, 20, 0.72);
+        backdrop-filter: blur(8px);
+        animation: fadeIn 0.25s ease;
+    }
+
+    .project_modal_content {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 32px;
+        border-radius: 24px;
+        background: rgba(18, 18, 35, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+
+        /* 스크롤바 */
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.22);
+            border-radius: 999px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+    }
+
+    .modal_close {
+        position: absolute;
+        top: 18px;
+        right: 20px;
+        width: 42px;
+        height: 42px;
+        border: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+        font-size: 28px;
+        line-height: 1;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.16);
+            transform: rotate(90deg);
+        }
+    }
+
+    h3 {
+        text-align: center;
+        font-size: 30px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #fff;
+    }
+
+    .modal_thumb {
+        width: 100%;
+        border-radius: 18px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.04);
+
+        img,
+        video {
+            width: 100%;
+            display: block;
+            border-radius: 18px;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        video {
+            max-height: 420px;
+            object-fit: cover;
+        }
+    }
+
+    .modal_info {
+        margin-top: 28px;
+    }
+
+    .modal_desc {
+        font-size: 16px;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 14px;
+    }
+
+    .modal_role,
+    .modal_deploy,
+    .modal_stack,
+    .modal_user,
+    .modal_admin {
+        font-size: 16px;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.82);
+        margin-bottom: 8px;
+
+        strong {
+            color: #fff;
+            font-weight: 700;
+        }
+    }
+
+
+    /* 모달 하단 버튼 */
+    .modal_links {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 32px;
+
+        a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 120px;
+            height: 42px;
+            padding: 0 18px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        a:first-child {
+            background: #fff;
+            color: #000;
+        }
+
+        a:last-child {
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        a:hover {
+            transform: translateY(-2px);
+        }
+    }
+
+    /* 등장 애니메이션 */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(18px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
