@@ -37,7 +37,7 @@ function Contact() {
 
       <div className="contact_contents">
         <div className="contact_visual">
-          <img src="/images/pofile.png" alt="AI 캐릭터 이미지" />
+          <img src={process.env.PUBLIC_URL + "/images/pofile.png"} alt="AI 캐릭터 이미지" />
         </div>
 
         <div className="contact_box">

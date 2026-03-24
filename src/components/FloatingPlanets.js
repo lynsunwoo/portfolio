@@ -21,7 +21,7 @@ export default function FloatingPlanets() {
         >
           <img
             className="floatingPlanets__item"
-            src={item.src}
+            src={process.env.PUBLIC_URL + item.src}
             alt={item.label}
             draggable={false}
             style={{ width: `${item.size}px` }}

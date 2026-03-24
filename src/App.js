@@ -50,7 +50,7 @@ function App() {
             <span className="intro_role">Front-End Developer & Web Publisher</span>
           </div>
 
-          <img src={nebula} className="nebula" alt="은하수이미지" />
+          <img src={process.env.PUBLIC_URL + nebula} className="nebula" alt="은하수이미지" />
         </section>
 
         <main className="main_section">
