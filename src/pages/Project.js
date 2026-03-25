@@ -11,6 +11,10 @@ const personalProjects = [
         stack: ["HTML", "CSS", "JavaScript"],
         live: "https://lynsunwoo.github.io/p1_kangwdong/",
         thumb: "/images/k-mockup.png",
+        type: "Desktop Web",
+        device: "PC",
+        viewport: "1920px",
+        contentWidth: "1400px",
     },
     {
         id: "passcucci",
@@ -21,6 +25,10 @@ const personalProjects = [
         stack: ["HTML", "CSS", "JavaScript"],
         live: "https://lynsunwoo.github.io/passcucci/",
         thumb: "/images/p-mockup.png",
+        type: "Desktop Web",
+        device: "PC",
+        viewport: "1920px",
+        contentWidth: "1200px",
     },
     {
         id: "casper",
@@ -33,6 +41,10 @@ const personalProjects = [
         thumbType: "video",
         video: "/videos/casper.mp4",
         thumb: "/images/casper.png",
+        type: "Desktop Web",
+        device: "PC",
+        viewport: "1920px",
+        contentWidth: "1200px",
     },
 ];
 
@@ -41,35 +53,47 @@ const teamProjects = [
         id: "crocs",
         title: "크록스 쇼핑몰 반응형 홈페이지",
         desc: "기존 크록스 쇼핑몰 홈페이지를 리뉴얼 디자인 후 제작한 반응형 웹사이트",
-        detail: <>
-            로그인, 회원가입, 상품리스트, 상세페이지, 장바구니, 관리자 페이지까지 구현한 팀 프로젝트입니다. <br />
-            반응형 레이아웃을 적용하고, 사용자 흐름을 고려한 화면 구성과 UI 구현 작업을 진행했습니다
-        </>,
-        user: "id: user1 / pw: 1234 ",
+        detail: (
+            <>
+                로그인, 회원가입, 상품리스트, 상세페이지, 장바구니, 관리자 페이지까지 구현한 팀 프로젝트입니다.
+                <br />
+                반응형 레이아웃을 적용하고, 사용자 흐름을 고려한 화면 구성과 UI 구현 작업을 진행했습니다.
+            </>
+        ),
+        user: "id: user1 / pw: 1234",
         admin: "id: admin1234 / pw: 1234",
         stack: ["SCSS", "Bootstrap", "PHP", "jQuery", "MySQL"],
         live: "https://lynsunwoo.dothome.co.kr/project_crocs/",
         thumb: "/images/crocs_mokup.png",
         role: "팀 조장으로 프로젝트 방향을 기획 및 조율했으며, 반응형 레이아웃 구현과 SCSS 구조 정리 작업을 담당했습니다.",
         deploy: "Dothome",
+        type: "Responsive Web",
+        device: "Desktop / Tablet / Mobile",
+        viewport: "1920+ / 1481+ / 1025+ / 768+ / Mobile",
+        layout: "Responsive Header / Navigation / Section / Footer",
     },
     {
         id: "ping",
         title: "Ping 디자인 피드백 플랫폼",
         desc: "디자인 시안을 업로드하고 핀 기반 질문과 피드백, Q&A를 주고받을 수 있는 디자인 플랫폼",
-        detail:
+        detail: (
             <>
                 디자인 시안 위에 핀을 배치해 위치 기반으로 피드백과 Q&A를 주고받을 수 있도록 구현한 디자인 피드백 플랫폼입니다.
                 <br />
                 React 기반 프론트엔드 UI 구현, 반응형 레이아웃, 핀 인터랙션, 상세 페이지 구성, API 연동 작업을 진행했습니다.
-            </>,
-        user: "id: user1 / pw: 1234 ",
+            </>
+        ),
+        user: "id: user1 / pw: 1234",
         admin: "id: admin / pw: 1234 로그인 후 주소창 맨 끝 /admin 추가 입력",
         stack: ["React", "SCSS", "MySQL", "Express"],
         live: "https://web-ping-frontend-mkvwe6z7891e08f1.sel3.cloudtype.app/",
         thumb: "/images/ping-mockup.png",
         role: "디자인 시안을 기반으로 아카이브 페이지와 상세 페이지 UI 구현했으며, 핀 인터랙션, 업로드 기능, API 연동을 담당했습니다.",
         deploy: "Cloudtype / Vercel",
+        type: "Responsive Web",
+        device: "Desktop / Tablet / Mobile",
+        viewport: "1920+ / 1440+ / 1024+ / 768+ / Mobile",
+        layout: "12 / 8 / 4 Column Grid",
     },
 ];
 
@@ -166,63 +190,93 @@ function Project() {
                             ×
                         </button>
                         <h3>{selectedProject.title}</h3>
-                        <div className="modal_thumb">
-                            {selectedProject.thumbType === "video" ? (
-                                <video
-                                    className="thumb_video"
-                                    autoPlay
-                                    muted
-                                    loop
-                                    playsInline
-                                    controls
-                                    poster={process.env.PUBLIC_URL + (selectedProject.thumb || "")}
-                                >
-                                    <source
-                                        src={process.env.PUBLIC_URL + selectedProject.video}
-                                        type="video/mp4"
-                                    />
-                                </video>
-                            ) : (
-                                <img
-                                    src={process.env.PUBLIC_URL + selectedProject.thumb}
-                                    alt={selectedProject.title}
-                                />
-                            )}
-                        </div>
 
-                        <div className="modal_info">
-                            <p className="modal_desc">{selectedProject.detail}</p>
-
-                            {selectedProject.role && (
-                                <p className="modal_role">
-                                    <strong>💪🏼 Role</strong> : {selectedProject.role}
-                                </p>
-                            )}
-
-
-                            {selectedProject.user && (
-                                <p className="modal_user">
-                                    <strong>📌 User</strong> : {selectedProject.user}
-                                </p>
-                            )}
-
-                            {selectedProject.admin && (
-                                <p className="modal_admin">
-                                    <strong>🔐 Admin</strong> : {selectedProject.admin}
-                                </p>
-                            )}
-
-                            <div className="modal_links">
-                                {selectedProject.live && (
-                                    <a
-                                        href={selectedProject.live}
-                                        target="_blank"
-                                        rel="noreferrer"
+                        <div className="modal_wrap">
+                            <div className="modal_thumb">
+                                {selectedProject.thumbType === "video" ? (
+                                    <video
+                                        className="thumb_video"
+                                        autoPlay
+                                        muted
+                                        loop
+                                        playsInline
+                                        controls
+                                        poster={process.env.PUBLIC_URL + (selectedProject.thumb || "")}
                                     >
-                                        Live Site
-                                    </a>
+                                        <source
+                                            src={process.env.PUBLIC_URL + selectedProject.video}
+                                            type="video/mp4"
+                                        />
+                                    </video>
+                                ) : (
+                                    <img
+                                        src={process.env.PUBLIC_URL + selectedProject.thumb}
+                                        alt={selectedProject.title}
+                                    />
+                                )}
+                            </div>
+
+                            <div className="modal_info">
+                                <p className="modal_desc">{selectedProject.detail}</p>
+                                {selectedProject.type && (
+                                    <p className="modal_meta">
+                                        <strong>📱 Type</strong> : {selectedProject.type}
+                                    </p>
                                 )}
 
+                                {selectedProject.device && (
+                                    <p className="modal_meta">
+                                        <strong>🖥 Device</strong> : {selectedProject.device}
+                                    </p>
+                                )}
+
+                                {selectedProject.viewport && (
+                                    <p className="modal_meta">
+                                        <strong>📐 Viewport</strong> : {selectedProject.viewport}
+                                    </p>
+                                )}
+
+                                {selectedProject.contentWidth && (
+                                    <p className="modal_meta">
+                                        <strong>📏 Content Width</strong> : {selectedProject.contentWidth}
+                                    </p>
+                                )}
+
+                                {selectedProject.layout && (
+                                    <p className="modal_meta">
+                                        <strong>🧩 Layout</strong> : {selectedProject.layout}
+                                    </p>
+                                )}
+
+                                {selectedProject.role && (
+                                    <p className="modal_role">
+                                        <strong>💪🏼 Role</strong> : {selectedProject.role}
+                                    </p>
+                                )}
+
+                                {selectedProject.user && (
+                                    <p className="modal_user">
+                                        <strong>📌 User</strong> : {selectedProject.user}
+                                    </p>
+                                )}
+
+                                {selectedProject.admin && (
+                                    <p className="modal_admin">
+                                        <strong>🔐 Admin</strong> : {selectedProject.admin}
+                                    </p>
+                                )}
+
+                                <div className="modal_links">
+                                    {selectedProject.live && (
+                                        <a
+                                            href={selectedProject.live}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
+                                            Live Site
+                                        </a>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>

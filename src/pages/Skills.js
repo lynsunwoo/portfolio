@@ -112,6 +112,7 @@ function Skills() {
             {activeTab === "HTML" && (
               <>
                 <li className="skill_title">HTML</li>
+                <li>⭐️⭐️⭐️ 주요 활용 기술</li>
                 <li>
                   ✔ Semantic Markup
                   <br />
@@ -133,6 +134,7 @@ function Skills() {
             {activeTab === "CSS" && (
               <>
                 <li className="skill_title">CSS</li>
+                <li>⭐️⭐️⭐️ 주요 활용 기술</li>
                 <li>
                   ✔ Layout
                   <br />
@@ -154,6 +156,7 @@ function Skills() {
             {activeTab === "SCSS" && (
               <>
                 <li className="skill_title">SCSS</li>
+                <li>⭐️⭐️⭐️ 주요 활용 기술</li>
                 <li>
                   ✔ 변수 관리
                   <br />
@@ -175,6 +178,7 @@ function Skills() {
             {activeTab === "JavaScript" && (
               <>
                 <li className="skill_title">JavaScript</li>
+                <li>⭐️⭐️⭐️ 주요 활용 기술</li>
                 <li>
                   ✔ DOM Manipulation
                   <br />
@@ -196,6 +200,7 @@ function Skills() {
             {activeTab === "jQuery" && (
               <>
                 <li className="skill_title">jQuery</li>
+                <li>⭐️⭐️ 구현 경험 보유</li>
                 <li>
                   ✔ DOM Manipulation
                   <br />
@@ -217,6 +222,7 @@ function Skills() {
             {activeTab === "PHP" && (
               <>
                 <li className="skill_title">PHP</li>
+                <li>⭐️ 학습 및 적용 경험</li>
                 <li>
                   ✔ Server Side Logic
                   <br />
@@ -238,6 +244,7 @@ function Skills() {
             {activeTab === "React" && (
               <>
                 <li className="skill_title">React</li>
+                <li>⭐️⭐️ 구현 경험 보유</li>
                 <li>
                   ✔ Component
                   <br />
@@ -259,6 +266,7 @@ function Skills() {
             {activeTab === "Git" && (
               <>
                 <li className="skill_title">Git / GitHub</li>
+                <li>⭐️⭐️ 구현 경험 보유</li>
                 <li>
                   ✔ Version Control
                   <br />
@@ -280,6 +288,7 @@ function Skills() {
             {activeTab === "Deployment" && (
               <>
                 <li className="skill_title">Deployment</li>
+                <li>⭐️ 학습 및 적용 경험</li>
                 <li>
                   ✔ Cloudtype
                   <br />

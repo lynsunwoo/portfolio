@@ -1,0 +1,304 @@
+.rocket_line_indicator {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 20;
+  transition: opacity 0.35s ease;
+}
+
+.rocket_line_inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.rocket_line_svg {
+  width: 60px;
+  height: 90px;
+  overflow: visible;
+  animation: rocketIdle 2.2s ease-in-out infinite;
+}
+
+.rocket_outline,
+.rocket_window,
+.rocket_fin_left,
+.rocket_fin_right,
+.rocket_nozzle {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.92);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+
+.rocket_outline {
+  animation: drawOutline 3.8s ease-in-out infinite;
+}
+
+.rocket_window {
+  animation: drawWindow 3.8s ease-in-out infinite;
+}
+
+.rocket_fin_left,
+.rocket_fin_right {
+  animation: drawFin 3.8s ease-in-out infinite;
+}
+
+.rocket_nozzle {
+  animation: drawNozzle 3.8s ease-in-out infinite;
+}
+
+.rocket_flame {
+  stroke: none;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center top;
+}
+
+.flame_main {
+  fill: url(#trailMain);
+  filter: blur(0.6px);
+  animation: flameMain 3.8s ease-in-out infinite;
+}
+
+.flame_left,
+.flame_right {
+  fill: url(#trailSide);
+  filter: blur(0.9px);
+  animation: flameSide 3.8s ease-in-out infinite;
+}
+
+.rocket_label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  white-space: nowrap;
+  animation: labelPulse 2s ease-in-out infinite;
+  text-shadow:
+    0 0 6px rgba(255, 255, 255, 0.08),
+    0 0 12px rgba(120, 200, 255, 0.08);
+}
+
+.rocket_line_indicator:hover .rocket_line_svg {
+  animation-duration: 1.5s;
+}
+
+.rocket_line_indicator:hover .rocket_label {
+  color: rgba(255, 255, 255, 0.96);
+}
+
+.rocket_line_indicator:hover .flame_main {
+  filter: blur(0.85px);
+}
+
+.rocket_line_indicator:hover .flame_left,
+.rocket_line_indicator:hover .flame_right {
+  filter: blur(1.1px);
+}
+
+@keyframes drawOutline {
+  0% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  34% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  76% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes drawWindow {
+  0%,
+  22% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  42% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  76% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes drawFin {
+  0%,
+  28% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+  36% {
+    opacity: 1;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  76% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes drawNozzle {
+  0%,
+  34% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+  42% {
+    opacity: 1;
+  }
+  54% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  76% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes flameMain {
+  0%,
+  30% {
+    opacity: 0;
+    transform: scaleY(0.45) scaleX(0.8);
+  }
+  36% {
+    opacity: 0.95;
+    transform: scaleY(1) scaleX(1.02);
+  }
+  48% {
+    opacity: 1;
+    transform: scaleY(1.28) scaleX(1.08);
+  }
+  58% {
+    opacity: 0.92;
+    transform: scaleY(1.06) scaleX(0.96);
+  }
+  72% {
+    opacity: 0.72;
+    transform: scaleY(1.16) scaleX(1.02);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(0.5) scaleX(0.82);
+  }
+}
+
+@keyframes flameSide {
+  0%,
+  36% {
+    opacity: 0;
+    transform: scaleY(0.5) scaleX(0.78);
+  }
+  44% {
+    opacity: 0.74;
+    transform: scaleY(0.9) scaleX(0.94);
+  }
+  54% {
+    opacity: 0.86;
+    transform: scaleY(1.08) scaleX(1.04);
+  }
+  68% {
+    opacity: 0.58;
+    transform: scaleY(0.9) scaleX(0.9);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(0.5) scaleX(0.78);
+  }
+}
+
+@keyframes rocketIdle {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-1.5px) rotate(-0.6deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0.35deg);
+  }
+  75% {
+    transform: translateY(-1px) rotate(0.6deg);
+  }
+}
+
+@keyframes labelPulse {
+  0%,
+  100% {
+    opacity: 0.52;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(2px);
+  }
+}
+
+@media (max-width: 768px) {
+  .rocket_line_indicator {
+    bottom: 18px;
+  }
+
+  .rocket_line_svg {
+    width: 52px;
+    height: 78px;
+  }
+
+  .rocket_label {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+  }
+
+  .rocket_outline,
+  .rocket_window,
+  .rocket_fin_left,
+  .rocket_fin_right,
+  .rocket_nozzle {
+    stroke-width: 2;
+  }
+}

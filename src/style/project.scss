@@ -174,7 +174,7 @@
     .project_modal_content {
         position: relative;
         width: 100%;
-        max-width: 500px;
+        max-width: 900px;
         max-height: 90vh;
         overflow-y: auto;
         padding: 32px;
@@ -227,8 +227,15 @@
         color: #fff;
     }
 
+    .modal_wrap {
+        display: flex;
+        align-items: center;
+    }
+
     .modal_thumb {
-        width: 100%;
+        flex: 1;
+        height: 250px;
+        margin-right: 30px;
         border-radius: 18px;
         overflow: hidden;
         background: rgba(255, 255, 255, 0.04);
@@ -236,6 +243,7 @@
         img,
         video {
             width: 100%;
+            height: 100%;
             display: block;
             border-radius: 18px;
         }
@@ -245,31 +253,41 @@
         }
 
         video {
-            max-height: 420px;
             object-fit: cover;
         }
     }
 
     .modal_info {
+        flex: 1;
         margin-top: 28px;
     }
 
     .modal_desc {
         font-size: 16px;
         line-height: 1.8;
-        color: rgba(255, 255, 255, 0.8);
+        color: #fff;
         margin-bottom: 14px;
     }
 
+    .modal_meta {
+        font-size: 14px;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 8px;
+
+        strong {
+            color: rgba(255, 255, 255, 0.86);
+            font-weight: 700;
+        }
+    }
+
     .modal_role,
-    .modal_deploy,
-    .modal_stack,
     .modal_user,
     .modal_admin {
-        font-size: 16px;
-        line-height: 1.7;
-        color: rgba(255, 255, 255, 0.82);
-        margin-bottom: 8px;
+        font-size: 15px;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.86);
+        margin-bottom: 10px;
 
         strong {
             color: #fff;
