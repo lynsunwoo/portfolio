@@ -67,7 +67,7 @@ function About() {
 
       <div className="keyword">
         <div className="keyword_card work_style">
-          <h3>Work Style</h3>
+          <h3>💪🏼 Work Style</h3>
           <ul>
             {workStyleList.map((item, index) => (
               <li key={index}>{item}</li>
@@ -76,7 +76,7 @@ function About() {
         </div>
 
         <div className="keyword_card strength">
-          <h3>Strength</h3>
+          <h3>🔥 Strength</h3>
           <ul>
             {strengthList.map((item, index) => (
               <li key={index}>{item}</li>

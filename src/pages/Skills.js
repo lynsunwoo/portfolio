@@ -88,7 +88,10 @@ function Skills() {
   return (
     <section ref={sectionRef} className={`skills ${isVisible ? "show" : ""}`}>
       <h2>Skills</h2>
-      <p className="sub_desc">각 스킬들을 클릭하여 구현 내용을 확인하실 수 있습니다.</p>
+      <p className="sub_desc">
+        각 스킬들을 클릭하여 구현 내용을 확인하실 수 있습니다.<br/>
+        별점은 활용 수준을 기준으로 1~3단계로 표시했습니다.
+      </p>
 
       <div className="skills_box">
         {/* ✅ 가로 탭 뷰포트 */}
