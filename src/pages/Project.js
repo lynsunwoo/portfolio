@@ -76,22 +76,24 @@ const teamProjects = [
                 섹션 구성과 이미지 배치를 단순하면서도 보기 좋게 조정해 사용자 경험의 흐름을 개선하는 데 초점을 두었으며,
                 <br />
                 상품 탐색부터 구매까지의 사용자 여정이 자연스럽게 이어질 수 있도록 사이트를 구성했습니다.
-                <br />
-                로그인, 회원가입, 상품리스트, 상세페이지, 장바구니, 관리자 페이지까지 구현한 팀 프로젝트입니다.
-                <br />
-                반응형 레이아웃을 적용하고, 사용자 흐름을 고려한 화면 구성과 UI 구현 작업을 진행했습니다.
             </>
         ),
+        pages: [
+            "-로그인 / 회원가입",
+            "-상품리스트 (Women)",
+            "-상세페이지 / 장바구니",
+            "-관리자 페이지: 상품 등록·수정·삭제, 회원 수정·삭제"
+        ],
         user: "id: user1 / pw: 1234",
         admin: "id: admin1234 / pw: 1234",
         stack: ["SCSS", "Bootstrap", "PHP", "jQuery", "MySQL"],
         live: "https://lynsunwoo.dothome.co.kr/project_crocs/",
         thumb: "/images/crocs_mokup.png",
-        role: "팀 조장으로 프로젝트 방향을 기획 및 조율했으며, 반응형 레이아웃 구현과 SCSS 구조 정리 작업을 담당했습니다.",
+        role: "팀 조장으로 프로젝트 방향을 기획 및 조율했으며, 메인페이지 반응형 레이아웃 구현과 SCSS 구조 정리, 테이블 설계를 진행하였습니다.",
         deploy: "Dothome",
         type: "Responsive Web",
         device: "Desktop / Tablet / Mobile",
-        viewport: "1920+ / 1481+ / 1025+ / 768+ / Mobile",
+        viewport: "Desktop (1025~1480) / Tablet (768~1024) / Mobile (≤767)",
         layout: "Responsive Header / Navigation / Section / Footer",
         colors: ["#00BAC6", "#111827", "#777777"],
     },
@@ -106,20 +108,27 @@ const teamProjects = [
                 사용자는 디자인 시안 위에 핀을 배치해 위치 기반으로 질문과 피드백을 남길 수 있으며, 이를 통해 어떤 부분에 대한 의견인지 직관적으로 확인할 수 있도록 구현했습니다.
                 <br />
                 단순한 이미지 공유를 넘어 피드백과 Q&A가 함께 이루어질 수 있는 구조로 설계해, 디자인 작업 과정에서 사용자들이 보다 효율적으로 소통할 수 있도록 구성하였습니다.
-                <br />
-                React 기반 프론트엔드 UI 구현, 반응형 레이아웃, 핀 인터랙션, 상세 페이지 구성, API 연동 작업을 진행했습니다.
             </>
         ),
+        pages: [
+            "-로그인 / 회원가입",
+            "-아카이브",
+            "-디자인 상세페이지",
+            "-업로드, 핀인터렉션 페이지",
+            "-Q&A페이지",
+            "-마이페이지 : 내가 남긴 피드백 수정, 프로필 수정 / 탈퇴",
+            "-관리자 페이지"
+        ],
         user: "id: user1 / pw: 1234",
         admin: "id: admin / pw: 1234 로그인 후 주소창 맨 끝 /admin 추가 입력",
         stack: ["React", "SCSS", "MySQL", "Express"],
         live: "https://web-ping-frontend-mkvwe6z7891e08f1.sel3.cloudtype.app/",
         thumb: "/images/ping-mockup.png",
-        role: "디자인 시안을 기반으로 아카이브 페이지와 상세 페이지 UI 구현했으며, 핀 인터랙션, 업로드 기능, API 연동을 담당했습니다.",
-        deploy: "Cloudtype / Vercel",
+        role: "아카이브 페이지, 디자인 상세 페이지, Q&A 페이지를 구현했으며, 업로드 기능과 핀인터렉션 기능, API 연동을 담당했습니다.",
+        deploy: "Cloudtype",
         type: "Responsive Web",
         device: "Desktop / Tablet / Mobile",
-        viewport: "1920+ / 1440+ / 1024+ / 768+ / Mobile",
+        viewport: "Desktop (≥1440) / Tablet (768~1023) / Mobile (≤767)",
         layout: "12 / 8 / 4 Column Grid",
         colors: ["#023FA1", "#43ECAC", "#FF6E79"],
     },
@@ -208,237 +217,244 @@ function Project() {
             </div>
 
             {/* 모달 */}
-{selectedProject && (
-    <div className="project_modal" onClick={closeModal}>
-        <div
-            className={`project_modal_content ${activeTab === "team" ? "team_modal" : ""}`}
-            onClick={(e) => e.stopPropagation()}
-        >
-            <button className="modal_close" onClick={closeModal}>
-                ×
-            </button>
-            <h3>{selectedProject.title}</h3>
+            {selectedProject && (
+                <div className="project_modal" onClick={closeModal}>
+                    <div
+                        className={`project_modal_content ${activeTab === "team" ? "team_modal" : ""}`}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <button className="modal_close" onClick={closeModal}>
+                            ×
+                        </button>
+                        <h3>{selectedProject.title}</h3>
 
-            {activeTab === "team" ? (
-                <>
-                    <div className="modal_wrap team_wrap">
-                        <div className="modal_thumb">
-                            {selectedProject.thumbType === "video" ? (
-                                <video
-                                    className="thumb_video"
-                                    autoPlay
-                                    muted
-                                    loop
-                                    playsInline
-                                    controls
-                                    poster={process.env.PUBLIC_URL + (selectedProject.thumb || "")}
-                                >
-                                    <source
-                                        src={process.env.PUBLIC_URL + selectedProject.video}
-                                        type="video/mp4"
-                                    />
-                                </video>
-                            ) : (
-                                <img
-                                    src={process.env.PUBLIC_URL + selectedProject.thumb}
-                                    alt={selectedProject.title}
-                                />
-                            )}
-                        </div>
+                        {activeTab === "team" ? (
+                            <>
+                                <div className="modal_wrap team_wrap">
+                                    <div className="modal_thumb">
+                                        {selectedProject.thumbType === "video" ? (
+                                            <video
+                                                className="thumb_video"
+                                                autoPlay
+                                                muted
+                                                loop
+                                                playsInline
+                                                controls
+                                                poster={process.env.PUBLIC_URL + (selectedProject.thumb || "")}
+                                            >
+                                                <source
+                                                    src={process.env.PUBLIC_URL + selectedProject.video}
+                                                    type="video/mp4"
+                                                />
+                                            </video>
+                                        ) : (
+                                            <img
+                                                src={process.env.PUBLIC_URL + selectedProject.thumb}
+                                                alt={selectedProject.title}
+                                            />
+                                        )}
+                                    </div>
 
-                        <div className="modal_info">
-                            <p className="modal_desc">{selectedProject.detail}</p>
-                        </div>
-                    </div>
+                                    <div className="modal_info">
+                                        <p className="modal_desc">{selectedProject.detail}</p>
+                                        <p className="section-title">Implemented Pages</p>
 
-                    <div className="team_meta_bottom">
-                        {selectedProject.type && (
-                            <p className="modal_meta">
-                                <strong>📱 Type</strong> : {selectedProject.type}
-                            </p>
-                        )}
+                                        {selectedProject.pages.map((page, index) => (
+                                            <p key={index}>{page}</p>
+                                        ))}
 
-                        {selectedProject.device && (
-                            <p className="modal_meta">
-                                <strong>🖥 Device</strong> : {selectedProject.device}
-                            </p>
-                        )}
-
-                        {selectedProject.viewport && (
-                            <p className="modal_meta">
-                                <strong>📐 Viewport</strong> : {selectedProject.viewport}
-                            </p>
-                        )}
-
-                        {selectedProject.layout && (
-                            <p className="modal_meta">
-                                <strong>🧩 Layout</strong> : {selectedProject.layout}
-                            </p>
-                        )}
-
-                        {selectedProject.deploy && (
-                            <p className="modal_meta">
-                                <strong>🚀 Deploy</strong> : {selectedProject.deploy}
-                            </p>
-                        )}
-
-                        {selectedProject.colors && (
-                            <div className="modal_color">
-                                <strong>🎨 Color</strong>
-                                <div className="color_chip_wrap">
-                                    {selectedProject.colors.map((color, idx) => (
-                                        <span
-                                            key={idx}
-                                            className="color_chip"
-                                            style={{ backgroundColor: color }}
-                                            title={color}
-                                        />
-                                    ))}
+                                    </div>
                                 </div>
-                            </div>
-                        )}
 
-                        {selectedProject.role && (
-                            <p className="modal_role">
-                                <strong>💪🏼 Role</strong> : {selectedProject.role}
-                            </p>
-                        )}
+                                <div className="team_meta_bottom">
 
-                        {selectedProject.user && (
-                            <p className="modal_user">
-                                <strong>📌 User</strong> : {selectedProject.user}
-                            </p>
-                        )}
+                                    {selectedProject.type && (
+                                        <p className="modal_meta">
+                                            <strong>📱 Type</strong> : {selectedProject.type}
+                                        </p>
+                                    )}
 
-                        {selectedProject.admin && (
-                            <p className="modal_admin">
-                                <strong>🔐 Admin</strong> : {selectedProject.admin}
-                            </p>
-                        )}
+                                    {selectedProject.device && (
+                                        <p className="modal_meta">
+                                            <strong>🖥 Device</strong> : {selectedProject.device}
+                                        </p>
+                                    )}
 
-                        <div className="modal_links">
-                            {selectedProject.live && (
-                                <a
-                                    href={selectedProject.live}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    Live Site
-                                </a>
-                            )}
-                        </div>
-                    </div>
-                </>
-            ) : (
-                <div className="modal_wrap">
-                    <div className="modal_thumb">
-                        {selectedProject.thumbType === "video" ? (
-                            <video
-                                className="thumb_video"
-                                autoPlay
-                                muted
-                                loop
-                                playsInline
-                                controls
-                                poster={process.env.PUBLIC_URL + (selectedProject.thumb || "")}
-                            >
-                                <source
-                                    src={process.env.PUBLIC_URL + selectedProject.video}
-                                    type="video/mp4"
-                                />
-                            </video>
+                                    {selectedProject.viewport && (
+                                        <p className="modal_meta">
+                                            <strong>📐 Viewport</strong> : {selectedProject.viewport}
+                                        </p>
+                                    )}
+
+                                    {selectedProject.layout && (
+                                        <p className="modal_meta">
+                                            <strong>🧩 Layout</strong> : {selectedProject.layout}
+                                        </p>
+                                    )}
+
+                                    {selectedProject.deploy && (
+                                        <p className="modal_meta">
+                                            <strong>🚀 Deploy</strong> : {selectedProject.deploy}
+                                        </p>
+                                    )}
+
+                                    {selectedProject.colors && (
+                                        <div className="modal_color">
+                                            <strong>🎨 Color</strong>
+                                            <div className="color_chip_wrap">
+                                                {selectedProject.colors.map((color, idx) => (
+                                                    <span
+                                                        key={idx}
+                                                        className="color_chip"
+                                                        style={{ backgroundColor: color }}
+                                                        title={color}
+                                                    />
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {selectedProject.role && (
+                                        <p className="modal_role">
+                                            <strong>💪🏼 Role</strong> : {selectedProject.role}
+                                        </p>
+                                    )}
+
+                                    {selectedProject.user && (
+                                        <p className="modal_user">
+                                            <strong>📌 User</strong> : {selectedProject.user}
+                                        </p>
+                                    )}
+
+                                    {selectedProject.admin && (
+                                        <p className="modal_admin">
+                                            <strong>🔐 Admin</strong> : {selectedProject.admin}
+                                        </p>
+                                    )}
+
+                                    <div className="modal_links">
+                                        {selectedProject.live && (
+                                            <a
+                                                href={selectedProject.live}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                            >
+                                                Live Site
+                                            </a>
+                                        )}
+                                    </div>
+                                </div>
+                            </>
                         ) : (
-                            <img
-                                src={process.env.PUBLIC_URL + selectedProject.thumb}
-                                alt={selectedProject.title}
-                            />
-                        )}
-                    </div>
-
-                    <div className="modal_info">
-                        <p className="modal_desc">{selectedProject.detail}</p>
-
-                        {selectedProject.type && (
-                            <p className="modal_meta">
-                                <strong>📱 Type</strong> : {selectedProject.type}
-                            </p>
-                        )}
-
-                        {selectedProject.device && (
-                            <p className="modal_meta">
-                                <strong>🖥 Device</strong> : {selectedProject.device}
-                            </p>
-                        )}
-
-                        {selectedProject.viewport && (
-                            <p className="modal_meta">
-                                <strong>📐 Viewport</strong> : {selectedProject.viewport}
-                            </p>
-                        )}
-
-                        {selectedProject.contentWidth && (
-                            <p className="modal_meta">
-                                <strong>📏 Content Width</strong> : {selectedProject.contentWidth}
-                            </p>
-                        )}
-
-                        {selectedProject.layout && (
-                            <p className="modal_meta">
-                                <strong>🧩 Layout</strong> : {selectedProject.layout}
-                            </p>
-                        )}
-
-                        {selectedProject.colors && (
-                            <div className="modal_color">
-                                <strong>🎨 Color</strong>
-                                <div className="color_chip_wrap">
-                                    {selectedProject.colors.map((color, idx) => (
-                                        <span
-                                            key={idx}
-                                            className="color_chip"
-                                            style={{ backgroundColor: color }}
-                                            title={color}
+                            <div className="modal_wrap">
+                                <div className="modal_thumb">
+                                    {selectedProject.thumbType === "video" ? (
+                                        <video
+                                            className="thumb_video"
+                                            autoPlay
+                                            muted
+                                            loop
+                                            playsInline
+                                            controls
+                                            poster={process.env.PUBLIC_URL + (selectedProject.thumb || "")}
+                                        >
+                                            <source
+                                                src={process.env.PUBLIC_URL + selectedProject.video}
+                                                type="video/mp4"
+                                            />
+                                        </video>
+                                    ) : (
+                                        <img
+                                            src={process.env.PUBLIC_URL + selectedProject.thumb}
+                                            alt={selectedProject.title}
                                         />
-                                    ))}
+                                    )}
+                                </div>
+
+                                <div className="modal_info">
+                                    <p className="modal_desc">{selectedProject.detail}</p>
+
+                                    {selectedProject.type && (
+                                        <p className="modal_meta">
+                                            <strong>📱 Type</strong> : {selectedProject.type}
+                                        </p>
+                                    )}
+
+                                    {selectedProject.device && (
+                                        <p className="modal_meta">
+                                            <strong>🖥 Device</strong> : {selectedProject.device}
+                                        </p>
+                                    )}
+
+                                    {selectedProject.viewport && (
+                                        <p className="modal_meta">
+                                            <strong>📐 Viewport</strong> : {selectedProject.viewport}
+                                        </p>
+                                    )}
+
+                                    {selectedProject.contentWidth && (
+                                        <p className="modal_meta">
+                                            <strong>📏 Content Width</strong> : {selectedProject.contentWidth}
+                                        </p>
+                                    )}
+
+                                    {selectedProject.layout && (
+                                        <p className="modal_meta">
+                                            <strong>🧩 Layout</strong> : {selectedProject.layout}
+                                        </p>
+                                    )}
+
+                                    {selectedProject.colors && (
+                                        <div className="modal_color">
+                                            <strong>🎨 Color</strong>
+                                            <div className="color_chip_wrap">
+                                                {selectedProject.colors.map((color, idx) => (
+                                                    <span
+                                                        key={idx}
+                                                        className="color_chip"
+                                                        style={{ backgroundColor: color }}
+                                                        title={color}
+                                                    />
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {selectedProject.role && (
+                                        <p className="modal_role">
+                                            <strong>💪🏼 Role</strong> : {selectedProject.role}
+                                        </p>
+                                    )}
+
+                                    {selectedProject.user && (
+                                        <p className="modal_user">
+                                            <strong>📌 User</strong> : {selectedProject.user}
+                                        </p>
+                                    )}
+
+                                    {selectedProject.admin && (
+                                        <p className="modal_admin">
+                                            <strong>🔐 Admin</strong> : {selectedProject.admin}
+                                        </p>
+                                    )}
+
+                                    <div className="modal_links">
+                                        {selectedProject.live && (
+                                            <a
+                                                href={selectedProject.live}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                            >
+                                                Live Site
+                                            </a>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         )}
-
-                        {selectedProject.role && (
-                            <p className="modal_role">
-                                <strong>💪🏼 Role</strong> : {selectedProject.role}
-                            </p>
-                        )}
-
-                        {selectedProject.user && (
-                            <p className="modal_user">
-                                <strong>📌 User</strong> : {selectedProject.user}
-                            </p>
-                        )}
-
-                        {selectedProject.admin && (
-                            <p className="modal_admin">
-                                <strong>🔐 Admin</strong> : {selectedProject.admin}
-                            </p>
-                        )}
-
-                        <div className="modal_links">
-                            {selectedProject.live && (
-                                <a
-                                    href={selectedProject.live}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    Live Site
-                                </a>
-                            )}
-                        </div>
                     </div>
                 </div>
             )}
-        </div>
-    </div>
-)}
         </section>
     );
 }

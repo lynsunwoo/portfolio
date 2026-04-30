@@ -61,12 +61,10 @@
         left: -120%;
         width: 80%;
         height: 200%;
-        background: linear-gradient(
-            120deg,
-            transparent,
-            rgba(255, 255, 255, 0.18),
-            transparent
-        );
+        background: linear-gradient(120deg,
+                transparent,
+                rgba(255, 255, 255, 0.18),
+                transparent);
         transform: rotate(25deg);
         transition: left 0.8s ease;
         pointer-events: none;
@@ -272,6 +270,11 @@ h3 {
     word-break: keep-all;
 }
 
+.section-title {
+    margin-top: 16px;
+    color: #9ec5ff
+}
+
 .modal_meta {
     font-size: 14px;
     line-height: 1.8;
@@ -435,5 +438,3 @@ h3 {
         transform: translateY(0);
     }
 }
-
-
